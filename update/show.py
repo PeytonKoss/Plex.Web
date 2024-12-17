@@ -257,7 +257,7 @@ for show in tv_shows_data:
 
     html_content += f"""
         <div class="card" data-show="{show['ratingKey']}">
-            <img src="{poster_path}" alt="{show['title']}">
+            <img src="{poster_path}" loading="lazy" alt="{show['title']}">
             <div class="details">
                 <h3>{show['title']}</h3>
                 <p>Seasons: {len(show.get("seasons", []))} ({total_episodes} Episodes)</p>
@@ -279,7 +279,7 @@ for show in tv_shows_data:
 
         html_content += f"""
             <div class="season-card">
-                <img src="{season_poster_path}" alt="{season['title']}">
+                <img src="{season_poster_path}" loading="lazy" alt="{season['title']}">
                 <div class="details">
                     <h3>{season['title']}</h3>
                     <p>Year: {season_details['year']}</p>

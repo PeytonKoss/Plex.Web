@@ -230,7 +230,7 @@ for artist in music_data:
         album_poster_path = f"{images_folder}/{album_key}.thumb.jpg"
         album_cards += f"""
             <div class="album-card">
-                <img src="{album_poster_path}" alt="{album_title}">
+                <img src="{album_poster_path}" loading="lazy" alt="{album_title}">
                 <div class="details">
                     <h3>{album_title}</h3>
                     <p>Tracks: {len(album_tracks)}</p>
@@ -249,7 +249,7 @@ for artist in music_data:
 
     html_content += f"""
         <div class="card" data-artist="{artist_key}">
-            <img src="{artist_poster_path}" alt="{artist_name}">
+            <img src="{artist_poster_path}" loading="lazy" alt="{artist_name}">
             <div class="details">
                 <h3>{artist_name}</h3>
                 <p>Albums: {valid_album_count} ({total_tracks} Tracks)</p>
@@ -258,7 +258,7 @@ for artist in music_data:
         </div>
         <div class="overlay">
             <div class="focused-card">
-                <img src="{artist_poster_path}" alt="{artist_name}">
+                <img src="{artist_poster_path}" loading="lazy" alt="{artist_name}">
                 <div class="details">
                     <h3>{artist_name}</h3>
                     <p>Albums: {valid_album_count} ({total_tracks} Tracks)</p>

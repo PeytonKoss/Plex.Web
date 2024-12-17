@@ -111,16 +111,23 @@ html_content = """
         .card:hover .details {
             opacity: 1;
         }
+        .card.active .details {
+            opacity: 1; /* Mimics the hover effect */
+        }
+        .card.active img {
+            transform: scale(1.1); /* Optional: Keep zoom effect */
+            filter: brightness(50%);
+        }
         .details h3 {
             margin: 10px 0;
-            font-size: 18px;
+            font-size: 14px;
         }
         .details p {
-            margin: 5px 0;
-            font-size: 14px;
+            margin: 7px 0;
+            font-size: 10px;
         }
         .release-year {
-            font-size: 14px;
+            font-size: 12px;
             color: #aaa;
             margin-top: 5px;
         }
@@ -155,7 +162,7 @@ for _, movie in movies_data.iterrows():
 
     html_content += f"""
         <div class="card">
-            <img src="{poster_path}" alt="{title}">
+            <img src="{poster_path}" loading="lazy" alt="{title}">
             <div class="details">
                 <h3>{title}</h3>
                 <p>Runtime: {runtime}</p>
@@ -173,6 +180,28 @@ for _, movie in movies_data.iterrows():
 html_content += """
     </div>
     <script>
+        // Enable hover effect toggle on click
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => {
+                const isActive = card.classList.contains('active');
+
+                // Remove 'active' class from all cards
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    
+                // Toggle the 'active' class only for the clicked card
+                if (!isActive) {
+                    card.classList.add('active');
+                }
+            });
+        });
+
+        // Optional: Allow clicking outside a card to reset all cards
+        document.body.addEventListener('click', (e) => {
+            if (!e.target.closest('.card')) {
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            }
+        });
+
         // JavaScript for Live Search
         document.getElementById('search-bar').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
