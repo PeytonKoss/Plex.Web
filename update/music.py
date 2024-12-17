@@ -44,7 +44,7 @@ html_content = '''
             background-color: #555;
         }
         :root {
-            --album-card-font-size: 14px;
+            --album-card-font-size: 10px;
             --artist-card-font-size: 12px;
         }
         .search-container {
@@ -89,7 +89,7 @@ html_content = '''
             font-size: var(--album-card-font-size);
             transition: all 0.5s ease;
             width: 100%; /* Make the width dynamic or adjust to desired size */
-            max-width: 200px; /* Restrict the maximum width */
+            max-width: 145px; /* Restrict the maximum width */
             aspect-ratio: 1 / 1; /* Forces a square ratio */
         }
         .card img, .album-card img {
