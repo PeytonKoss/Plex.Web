@@ -85,7 +85,7 @@ html_content = """
             background-color: #555;
         }
         :root {
-            --main-card-font-size: 14px;
+            --main-card-font-size: 12px;
             --focused-card-font-size: 12px;
             --season-card-font-size: 10px;
         }
@@ -104,8 +104,8 @@ html_content = """
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
             padding: 20px;
             justify-content: center;
             align-items: center;
@@ -119,7 +119,7 @@ html_content = """
             text-align: center;
             transition: all 0.5s ease;
             width: 100%; /* Make the width dynamic or adjust to desired size */
-            max-width: 300px; /* Restrict the maximum width */
+            max-width: 225px; /* Restrict the maximum width */
         }
         .card img {
             width: 100%;
@@ -178,6 +178,7 @@ html_content = """
             width: 200px;
             border-radius: 8px;
             margin-bottom: 20px;
+            margin-top: 20px;
             flex-shrink: 0;
             font-size: var(--focused-card-font-size);
             text-align: center;

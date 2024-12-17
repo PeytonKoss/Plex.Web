@@ -67,8 +67,8 @@ html_content = """
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+            gap: 10px;
             padding: 20px;
             justify-content: center;
             align-items: center;

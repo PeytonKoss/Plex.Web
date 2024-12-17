@@ -45,6 +45,7 @@ html_content = '''
         }
         :root {
             --album-card-font-size: 14px;
+            --artist-card-font-size: 12px;
         }
         .search-container {
             margin: 20px;
@@ -61,7 +62,7 @@ html_content = '''
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
             gap: 20px;
             padding: 20px;
             justify-content: center;
@@ -74,6 +75,7 @@ html_content = '''
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
             transition: all 0.5s ease;
+            font-size: 12px;
             width: 100%; /* Make the width dynamic or adjust to desired size */
             max-width: 250px; /* Restrict the maximum width */
             aspect-ratio: 1 / 1; /* Forces a square ratio */
