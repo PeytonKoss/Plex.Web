@@ -155,51 +155,86 @@ html_content = f'''
     <meta name="theme-color" content="#121212">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plex Library - Main</title>
     {scrolling_css}
 </head>
 <body>
     <h1 style="text-align: center; padding: 20px;">🎥 PK+ 🎵</h1>
-    <div class="container">
-        <!-- Movies Card -->
-        <a href="plex_movies.html" class="category-card">
-            <div class="scrolling-background movies"></div>
-            <div class="overlay">
-                <h3>Movies</h3>
-                <div class="staggered">
-                    <div>{total_movies} Movies</div>
-                    <div>(2.3 TB)</div>
+    <main id="content">
+        <div class="container">
+            <!-- Movies Card -->
+            <a href="plex_movies.html" class="category-card ajax-link">
+                <div class="scrolling-background movies"></div>
+                <div class="overlay">
+                    <h3>Movies</h3>
+                    <div class="staggered">
+                        <div>{total_movies} Movies</div>
+                        <div>(2.3 TB)</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <!-- TV Shows Card -->
-        <a href="plex_tvshows.html" class="category-card">
-            <div class="scrolling-background tvshows"></div>
-            <div class="overlay">
-                <h3>TV Shows</h3>
-                <div class="staggered">
-                    <div>{total_shows} Shows</div>
-                    <div>{total_seasons} Seasons</div>
-                    <div>(5.5 TB)</div>
+            </a>
+            <!-- TV Shows Card -->
+            <a href="plex_tvshows.html" class="category-card ajax-link">
+                <div class="scrolling-background tvshows"></div>
+                <div class="overlay">
+                    <h3>TV Shows</h3>
+                    <div class="staggered">
+                        <div>{total_shows} Shows</div>
+                        <div>{total_seasons} Seasons</div>
+                        <div>(5.5 TB)</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <!-- Music Card -->
+            </a>
+            <!-- Music Card -->
+            <a href="plex_music.html" class="category-card ajax-link">
+                <div class="scrolling-background music"></div>
+                <div class="overlay">
+                    <h3>Music</h3>
+                    <div class="staggered">
+                        <div>{total_artists} Artists</div>
+                        <div>{num_albums} Albums</div>
+                        <div>{num_tracks} Tracks</div>
+                        <div>(600 GB)</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {{
+            console.log("AJAX script loaded and ready.");
+            document.addEventListener('click', function (e) {{
+                const target = e.target.closest('.ajax-link'); // Match the closest link with class 'ajax-link'
+                if (target) {{
+                    e.preventDefault(); // Prevent default link behavior (navigation)
+                    console.log("Card clicked: " + target.href);
 
-        <a href="plex_music.html" class="category-card">
-            <div class="scrolling-background music"></div>
-            <div class="overlay">
-                <h3>Music</h3>
-                <div class="staggered">
-                    <div>{total_artists} Artists</div>
-                    <div>{num_albums} Albums</div>
-                    <div>{num_tracks} Tracks</div>
-                    <div>(600 GB)</div>
-                </div>
-            </div>
-        </a>
-    </div>
+                    // Perform the fetch request to load the entire page
+                    fetch(target.href)
+                        .then(function (response) {{
+                            if (!response.ok) {{
+                                throw new Error("HTTP error! status: " + response.status);
+                            }}
+                            return response.text();
+                        }})
+                        .then(function (html) {{
+                            // Replace the entire document's content
+                            document.open();
+                            document.write(html);
+                            document.close();
+
+                            // Update the browser history state
+                            history.pushState(null, '', target.href);
+
+                            console.log("Full page content replaced.");
+                        }})
+                        .catch(function (err) {{
+                            console.error("Failed to load content:", err);
+                        }});
+                }}
+            }});
+        }});
+    </script>
 </body>
 </html>
 '''
