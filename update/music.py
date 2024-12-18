@@ -160,7 +160,6 @@ html_content = '''
             border-radius: 8px;
             transition: transform 0.3s ease; /* Smooth hover effect */
         }
-
         .focused-card:hover img {
             transform: scale(1.05);
             filter: brightness(50%);
@@ -173,6 +172,30 @@ html_content = '''
             padding: 10px;
             justify-content: center;
             max-width: 90%;
+        }
+        #scroll-to-top {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            padding: 10px;
+            font-size: 20px;
+            background-color: #3a3a3a;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            z-index: 300;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: top 0.5s ease, opacity 0.5s ease;
+        }
+        #scroll-to-top:hover {
+            background-color: #555;
+        }
+        #scroll-to-top.visible {
+            display: block;
+            transform: translateX(-50%);
+            opacity: 1;
         }
     </style>
 </head>
@@ -276,7 +299,26 @@ for artist in music_data:
 
 html_content += """
     </div>
+    <button id="scroll-to-top">^</button>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const searchContainer = document.querySelector('.search-container'); // Target the live search box
+
+            window.addEventListener('scroll', () => {
+                const searchContainerBottom = searchContainer.getBoundingClientRect().bottom;
+                if (searchContainerBottom < 0) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
         // Live Search
         document.getElementById('search-bar').addEventListener('input', function(e) {
             const query = e.target.value.toLowerCase();
