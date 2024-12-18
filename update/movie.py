@@ -42,13 +42,14 @@ html_content = """
             z-index: 300;
         }
         .home-button {
-            padding: 10px 20px;
-            font-size: 25px;
+            padding: 5px 10px;
+            font-size: 35px;
             border: none;
             border-radius: 16px;
             background-color: #3a3a3a;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             color: white;
+            justify-content: center;
             cursor: pointer;
             text-decoration: none;
         }
@@ -134,11 +135,35 @@ html_content = """
             color: #aaa;
             margin-top: 5px;
         }
+        #scroll-to-top {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            padding: 10px;
+            font-size: 20px;
+            background-color: #3a3a3a;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            cursor: pointer;
+            z-index: 300;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: top 0.5s ease, opacity 0.5s ease;
+        }
+        #scroll-to-top:hover {
+            background-color: #555;
+        }
+        #scroll-to-top.visible {
+            display: block;
+            transform: translateX(-50%);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <div class="button-container">
-        <a href="index.html" class="home-button">↩</a>
+        <a href="index.html" class="home-button">⤺</a>
     </div>
     <h1 style="text-align: center; padding: 15px;">Movies</h1>
     <div class="search-container">
@@ -182,6 +207,7 @@ for _, movie in movies_data.iterrows():
 # Close the HTML structure
 html_content += """
     </div>
+    <button id="scroll-to-top">^</button>
     <script>
         // Enable hover effect toggle on click
         document.querySelectorAll('.card').forEach(card => {
@@ -203,6 +229,24 @@ html_content += """
             if (!e.target.closest('.card')) {
                 document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            const searchContainer = document.querySelector('.search-container'); // Target the live search box
+
+            window.addEventListener('scroll', () => {
+                const searchContainerBottom = searchContainer.getBoundingClientRect().bottom;
+                if (searchContainerBottom < 0) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
 
         // JavaScript for Live Search
