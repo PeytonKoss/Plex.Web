@@ -52,12 +52,13 @@ scrolling_css = """
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 10px;
         padding: 20px;
+        overflow: auto;
     }
     .category-card {
         position: relative;
-        width: 80%; height: 200px;
+        width: 80%; height: 150px;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
@@ -105,7 +106,7 @@ scrolling_css = """
     }
     .staggered div {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(35px);
         transition: all 0.5s ease;
     }
     .category-card:hover .staggered div:nth-child(1) {
@@ -149,6 +150,9 @@ html_content = f'''
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plex Library - Main</title>
