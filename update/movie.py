@@ -42,19 +42,22 @@ html_content = """
             z-index: 300;
         }
         .home-button {
-            padding: 5px 10px;
-            font-size: 35px;
-            border: none;
+            padding: 10px 20px;
+            font-size: 25px;
+            border: 1px solid #555;
             border-radius: 16px;
-            background-color: #3a3a3a;
+            background-color: #212121;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             color: white;
-            justify-content: center;
             cursor: pointer;
             text-decoration: none;
         }
         .home-button:hover {
-            background-color: #555;
+            background-color: #666;
+        }
+        .flipped-arrow {
+            display: inline-block; /* Ensure transform applies */
+            transform: scaleX(-1); /* Flip the arrow horizontally */
         }
         .search-container {
             margin: 20px;
@@ -138,21 +141,24 @@ html_content = """
         #scroll-to-top {
             display: none;
             position: fixed;
+            width: 40px; /* Set button width */
+            height: 40px; /* Set button height */
             top: 10px;
             left: 50%;
             padding: 10px;
+            padding-top: 10px; /* Add artificial space above the ^ */
             font-size: 20px;
-            background-color: #3a3a3a;
+            background-color: #212121;
             color: #fff;
-            border: none;
+            border: 1px solid #555;
             border-radius: 24px;
             cursor: pointer;
-            z-index: 300;
+            z-index: 200;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: top 0.5s ease, opacity 0.5s ease;
         }
         #scroll-to-top:hover {
-            background-color: #555;
+            background-color: #666;
         }
         #scroll-to-top.visible {
             display: block;
@@ -163,7 +169,9 @@ html_content = """
 </head>
 <body>
     <div class="button-container">
-        <a href="index.html" class="home-button">⤺</a>
+        <a href="index.html" class="home-button">
+            <span class="flipped-arrow">➔</span>
+        </a>
     </div>
     <h1 style="text-align: center; padding: 15px;">Movies</h1>
     <div class="search-container">

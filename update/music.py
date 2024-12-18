@@ -30,21 +30,25 @@ html_content = '''
             margin: 20px;
             text-align: left;
             position: fixed;
-            z-index: 300;
+            z-index: 200;
         }
         .home-button {
             padding: 10px 20px;
             font-size: 25px;
-            border: none;
+            border: 1px solid #555;
             border-radius: 16px;
-            background-color: #3a3a3a;
+            background-color: #212121;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             color: white;
             cursor: pointer;
             text-decoration: none;
         }
         .home-button:hover {
-            background-color: #888;
+            background-color: #666;
+        }
+        .flipped-arrow {
+            display: inline-block; /* Ensure transform applies */
+            transform: scaleX(-1); /* Flip the arrow horizontally */
         }
         :root {
             --album-card-font-size: 10px;
@@ -132,7 +136,7 @@ html_content = '''
             width: 100%;
             height: 100%;
             background: rgba(51, 51, 51, 0.9);
-            z-index: 200;
+            z-index: 300;
             display: none;
             flex-direction: column;
             align-items: center;
@@ -176,21 +180,24 @@ html_content = '''
         #scroll-to-top {
             display: none;
             position: fixed;
+            width: 40px; /* Set button width */
+            height: 40px; /* Set button height */
             top: 10px;
             left: 50%;
             padding: 10px;
+            padding-top: 10px; /* Add artificial space above the ^ */
             font-size: 20px;
-            background-color: #3a3a3a;
+            background-color: #212121;
             color: #fff;
-            border: none;
+            border: 1px solid #555;
             border-radius: 24px;
             cursor: pointer;
-            z-index: 300;
+            z-index: 200;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: top 0.5s ease, opacity 0.5s ease;
         }
         #scroll-to-top:hover {
-            background-color: #555;
+            background-color: #666;
         }
         #scroll-to-top.visible {
             display: block;
@@ -201,7 +208,9 @@ html_content = '''
 </head>
 <body>
     <div class="button-container">
-        <a href="index.html" class="home-button">↩</a>
+        <a href="index.html" class="home-button">
+            <span class="flipped-arrow">➔</span>
+        </a>
     </div>
     <h1 style="text-align: center; padding: 15px;">Music</h1>
     <div class="search-container">
